@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Tokens</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        function copyToClipboard(id) {
+            var copyText = document.getElementById(id);
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand("copy");
+        }
+    </script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto mt-10">
+        <div class="bg-white shadow-md rounded p-6">
+            <h2 class="text-2xl font-bold mb-5">User Information</h2>
+            <div class="mb-5">
+                <label class="block text-gray-700 text-sm font-bold mb-2">User ID:</label>
+                <div class="flex">
+                    <input type="text" id="user_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ user_id }}" readonly>
+                    <button onclick="copyToClipboard('user_id')" class="ml-2 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
+                        📃
+                    </button>
+                </div>
+            </div>
+            <div class="mb-5">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Username:</label>
+                <div class="flex">
+                    <input type="text" id="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ username }}" readonly>
+                    <button onclick="copyToClipboard('username')" class="ml-2 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
+                        📃
+                    </button>
+                </div>
+            </div>
+            <h2 class="text-2xl font-bold mb-5">Short-lived Token</h2>
+            <div class="mb-5">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Access Token:</label>
+                <div class="flex">
+                    <input type="text" id="short_lived_token" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ short_lived_token_response['access_token'] }}" readonly>
+                    <button onclick="copyToClipboard('short_lived_token')" class="ml-2 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
+                        📃
+                    </button>
+                </div>
+            </div>
+            <h2 class="text-2xl font-bold mt-10 mb-5">Long-lived Token</h2>
+            <div class="mb-5">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Access Token:</label>
+                <div class="flex">
+                    <input type="text" id="long_lived_token" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ long_lived_token_response['access_token'] }}" readonly>
+                    <button onclick="copyToClipboard('long_lived_token')" class="ml-2 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
+                        📃
+                    </button>
+                </div>
+            </div>
+            <div class="mb-5">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Expires At:</label>
+                <div class="flex">
+                    <input type="text" id="expires_at" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ long_lived_token_response['expires_at'] }}" readonly>
+                    <button onclick="copyToClipboard('expires_at')" class="ml-2 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
+                        📃
+                    </button>
+                </div>
+            </div>
+            <!-- <form method="post" action="/renew_tokens">
+                <button type="submit" class="px-4 py-2 bg-yellow-500 text-white font-bold rounded hover:bg-yellow-700 focus:outline-none focus:shadow-outline">Renew Tokens</button>
+            </form> -->
+            <h2 class="text-2xl font-bold mt-10 mb-5">Upload Image</h2>
+            <form method="post" enctype="multipart/form-data">
+                <div class="mb-5">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Image:</label>
+                    <input type="file" name="image" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                </div>
+                <div class="mb-5">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Caption:</label>
+                    <input type="text" name="caption" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div>
+                    <button type="submit" class="px-4 py-2 bg-green-500 text-white font-bold rounded hover:bg-green-700 focus:outline-none focus:shadow-outline">
+                        Upload
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
