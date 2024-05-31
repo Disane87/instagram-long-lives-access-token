@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,77 +16,122 @@
         }
     </script>
 </head>
+
 <body class="bg-gray-100">
     <div class="container mx-auto mt-10">
-        <div class="bg-white shadow-md rounded p-6">
-            <h2 class="text-2xl font-bold mb-5">User Information</h2>
-            <div class="mb-5">
-                <label class="block text-gray-700 text-sm font-bold mb-2">User ID:</label>
-                <div class="flex">
-                    <input type="text" id="user_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ user_id }}" readonly>
-                    <button onclick="copyToClipboard('user_id')" class="ml-2 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
-                        📃
-                    </button>
+        <div class="flex flex-row gap-4">
+            <div class="bg-white shadow-md rounded p-6 mb-6 w-1/4">
+                <div class="user-info flex flex-row w-100">
+                    <h2 class="text-2xl font-bold mb-5 w-full">Meta</h2>
+                    <img src="{{ user.picture.data.url }}" alt="Profile Picture"
+                        class="w-24 h-24 object-cover rounded-full">
                 </div>
-            </div>
-            <div class="mb-5">
-                <label class="block text-gray-700 text-sm font-bold mb-2">Username:</label>
-                <div class="flex">
-                    <input type="text" id="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ username }}" readonly>
-                    <button onclick="copyToClipboard('username')" class="ml-2 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
-                        📃
-                    </button>
-                </div>
-            </div>
-            <h2 class="text-2xl font-bold mb-5">Short-lived Token</h2>
-            <div class="mb-5">
-                <label class="block text-gray-700 text-sm font-bold mb-2">Access Token:</label>
-                <div class="flex">
-                    <input type="text" id="short_lived_token" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ short_lived_token_response['access_token'] }}" readonly>
-                    <button onclick="copyToClipboard('short_lived_token')" class="ml-2 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
-                        📃
-                    </button>
-                </div>
-            </div>
-            <h2 class="text-2xl font-bold mt-10 mb-5">Long-lived Token</h2>
-            <div class="mb-5">
-                <label class="block text-gray-700 text-sm font-bold mb-2">Access Token:</label>
-                <div class="flex">
-                    <input type="text" id="long_lived_token" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ long_lived_token_response['access_token'] }}" readonly>
-                    <button onclick="copyToClipboard('long_lived_token')" class="ml-2 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
-                        📃
-                    </button>
-                </div>
-            </div>
-            <div class="mb-5">
-                <label class="block text-gray-700 text-sm font-bold mb-2">Expires At:</label>
-                <div class="flex">
-                    <input type="text" id="expires_at" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ long_lived_token_response['expires_at'] }}" readonly>
-                    <button onclick="copyToClipboard('expires_at')" class="ml-2 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
-                        📃
-                    </button>
-                </div>
-            </div>
-            <!-- <form method="post" action="/renew_tokens">
-                <button type="submit" class="px-4 py-2 bg-yellow-500 text-white font-bold rounded hover:bg-yellow-700 focus:outline-none focus:shadow-outline">Renew Tokens</button>
-            </form> -->
-            <h2 class="text-2xl font-bold mt-10 mb-5">Upload Image</h2>
-            <form method="post" enctype="multipart/form-data">
+
                 <div class="mb-5">
-                    <label class="block text-gray-700 text-sm font-bold mb-2">Image:</label>
-                    <input type="file" name="image" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">ID:</label>
+                    <div class="flex">
+                        <input type="text" id="user_id"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            value="{{ user.id }}" readonly>
+                        <button onclick="copyToClipboard('user_id')"
+                            class="ml-2 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
+                            📃
+                        </button>
+                    </div>
+                </div>
+                <div class="mb-5">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+                    <div class="flex">
+                        <input type="text" id="username"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            value="{{ user.name }}" readonly>
+                        <button onclick="copyToClipboard('username')"
+                            class="ml-2 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
+                            📃
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white shadow-md rounded p-6 mb-6 w-full">
+                <h2 class="text-2xl font-bold mb-5">Authorization</h2>
+                <div class="mb-5">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Auth Code:</label>
+                    <div class="flex">
+                        <input type="text" id="auth_code"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            value="{{ code }}" readonly>
+                        <button onclick="copyToClipboard('auth_code')"
+                            class="ml-2 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
+                            📃
+                        </button>
+                    </div>
+                </div>
+                <div class="mb-5">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Short lived access token:</label>
+                    <div class="flex">
+                        <input type="text" id="short_lived_token"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            value="{{ short_lived_token_response['access_token'] }}" readonly>
+                        <button onclick="copyToClipboard('short_lived_token')"
+                            class="ml-2 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
+                            📃
+                        </button>
+                    </div>
+                </div>
+                <div class="mb-5">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Long lived Token:</label>
+                    <div class="flex">
+                        <input type="text" id="long_lived_token"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            value="{{ long_lived_token_response['access_token'] }}" readonly>
+                        <button onclick="copyToClipboard('long_lived_token')"
+                            class="ml-2 px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
+                            📃
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% for name, account_data in accounts.items() %}
+        <div class="bg-white shadow-md rounded p-6 mb-6">
+            <h2 class="text-2xl font-bold mb-5">{{ name }} - Upload Image</h2>
+            <form method="post" enctype="multipart/form-data">
+                <input type="hidden" name="account_id" value="{{ account_data['info']['id'] }}">
+                <div class="mb-5">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Image URL:</label>
+                    <input type="text" name="image_url"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        required>
                 </div>
                 <div class="mb-5">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Caption:</label>
-                    <input type="text" name="caption" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <input type="text" name="caption"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 </div>
                 <div>
-                    <button type="submit" class="px-4 py-2 bg-green-500 text-white font-bold rounded hover:bg-green-700 focus:outline-none focus:shadow-outline">
+                    <button type="submit"
+                        class="px-4 py-2 bg-green-500 text-white font-bold rounded hover:bg-green-700 focus:outline-none focus:shadow-outline">
                         Upload
                     </button>
                 </div>
             </form>
         </div>
+        <div class="bg-white shadow-md rounded p-6 mb-6">
+            <h2 class="text-2xl font-bold mb-5">{{ name }} - Latest 6 Images</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for media in account_data['media'] %}
+                <div class="bg-gray-200 p-4 rounded-lg shadow-md">
+                    <img src="{{ media['media_url'] }}" alt="Image" class="w-full h-48 object-cover rounded-lg">
+                    <p class="mt-2 text-gray-700">{{ media['caption'] }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+
     </div>
 </body>
+
 </html>

@@ -8,7 +8,7 @@ Python script to extract your instagram basic display api access tokens to autom
 Just clone the repo and install deps
 
 ```bash
-  pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Usage/Examples
@@ -16,7 +16,7 @@ Just clone the repo and install deps
 Just simply execute the script
 
 ```bash
-python main.py [instagram-client-id] [instagram-client-secret] https://localhost:5000/auth
+python main.py --client-id [instagram-client-id] --client-secret [instagram-client-secret]
 
 ```
 
