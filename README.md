@@ -20,3 +20,9 @@ python main.py --client-id [instagram-client-id] --client-secret [instagram-clie
 
 ```
 
+
+---
+
+<p align="center">
+  Made by me at <a href="https://subthiel.eu/softwareentwicklung">Subthiel</a> — software development &amp; 3D printing
+</p>
